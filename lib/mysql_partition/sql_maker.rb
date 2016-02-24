@@ -2,7 +2,6 @@ require "mysql_partition/type"
 
 module MysqlPartition
   class SqlMaker
-
     attr_accessor :type, :table, :expression, :args
     def initialize(hash)
       if !(hash[:type] and hash[:table] and hash[:expression])
@@ -18,7 +17,7 @@ module MysqlPartition
     end
 
     def create_partitions(hash)
-      sprintf 'ALTER TABLE %s PARTITION BY %s (%s) (%s)',
+      sprintf 'ALTER TABLE %s PARTITION BY %s COLUMNS (%s) (%s)',
         table, type, expression, build_partition_parts(hash)
     end
 
