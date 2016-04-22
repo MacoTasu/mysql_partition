@@ -18,7 +18,7 @@ module MysqlPartition
     end
 
     def create_partitions(hash)
-      sprintf 'ALTER TABLE %s PARTITION BY %s (%s) (%s)',
+      sprintf 'ALTER TABLE %s PARTITION BY %s COLUMNS (%s) (%s)',
         table, type, expression, build_partition_parts(hash)
     end
 
