@@ -16,7 +16,7 @@ describe MysqlPartition::SqlMaker do
       end
 
       it "returns ALTER TABLE" do
-        is_expected.to eq "ALTER TABLE test PARTITION BY LIST (event_id) (PARTITION p1 VALUES IN (1))"
+        is_expected.to eq "ALTER TABLE test PARTITION BY LIST COLUMNS (event_id) (PARTITION p1 VALUES IN (1))"
       end
     end
 
@@ -57,7 +57,7 @@ describe MysqlPartition::SqlMaker do
       end
 
       it "returns ALTER TABLE" do
-        is_expected.to eq "ALTER TABLE test2 PARTITION BY RANGE (created_at) (PARTITION p20100101 VALUES LESS THAN ('2010-01-01'))"
+        is_expected.to eq "ALTER TABLE test2 PARTITION BY RANGE COLUMNS (created_at) (PARTITION p20100101 VALUES LESS THAN ('2010-01-01'))"
       end
     end
 
@@ -102,7 +102,7 @@ describe MysqlPartition::SqlMaker do
       end
 
       it "returns ALTER TABLE" do
-        is_expected.to eq "ALTER TABLE test3 PARTITION BY RANGE (TO_DAYS(created_at)) (PARTITION p20100101 VALUES LESS THAN (TO_DAYS('2010-01-01')), PARTITION pmax VALUES LESS THAN (MAXVALUE))"
+        is_expected.to eq "ALTER TABLE test3 PARTITION BY RANGE COLUMNS (TO_DAYS(created_at)) (PARTITION p20100101 VALUES LESS THAN (TO_DAYS('2010-01-01')), PARTITION pmax VALUES LESS THAN (MAXVALUE))"
       end
     end
 
